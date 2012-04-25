@@ -119,6 +119,10 @@
 					
 					// Validate that it is an image
 					if (in_array($f_x, allowed_ext())) {
+						// Could also now demonstrate amending the filenames
+						// to make it easier to list only relevant images
+						// e.g. item_FILENAME or person_FILENAME
+						// If so, just copy and rename an image and show
 					
 						// Display the image
 						// (Inline width limiting to not take whole screen)
