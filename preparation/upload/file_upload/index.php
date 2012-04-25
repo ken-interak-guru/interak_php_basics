@@ -7,6 +7,11 @@
 	//		
 	//	}
 	
+	function allowed_ext() {
+		$allowed_ext = array('jpg', 'jpeg', 'png', 'gif');
+		return $allowed_ext;
+	}
+	
 	// Has images been inserted into array?
 	if (isset($_FILES['image'])) {
 		
@@ -14,7 +19,8 @@
 		$errors = array();
 		
 		// List of allowed file extensions
-		$allowed_ext = array('jpg', 'jpeg', 'png', 'gif');
+		// $allowed_ext = array('jpg', 'jpeg', 'png', 'gif');
+		// Moving this into a function when listing images afterwards
 		
 		// Retrieve file name from image
 		$file_name = $_FILES['image']['name'];
@@ -40,7 +46,7 @@
 		$file_tmp = $_FILES['image']['tmp_name'];
 		
 		// Check if $file_ext is not in $allowed_ext array
-		if ( !in_array($file_ext, $allowed_ext) ) { // in_array() === false
+		if ( !in_array($file_ext, allowed_ext()) ) { // in_array() === false
 			// Adding a message to the $errors array
 			$errors[] = 'Extension not allowed';
 		}
@@ -90,6 +96,40 @@
 		</p>
 	
 	</form>
+	
+	<div id="images">
+	
+		<?php 
+		
+			// Loop through images and display them
+		
+			$image_path = "images/";
+			$files = glob($image_path . "*.*");
+
+			// Remember to implement allowed_ext() function now
+			
+			// Validate that any files exist in the directory
+			if (count($files) > 0) {
+
+				// Loop through the files
+				foreach ($files as $file) {
+					
+					// Get file extension
+					$f_x = strtolower(end(explode('.', $file)));
+					
+					// Validate that it is an image
+					if (in_array($f_x, allowed_ext())) {
+					
+						// Display the image
+						// (Inline width limiting to not take whole screen)
+						echo '<img src="' . $file . '" width=200 />';
+					}
+				}
+			}			
+		
+		 ?>
+	
+	</div>
 
 </body>
 
