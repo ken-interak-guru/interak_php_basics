@@ -77,4 +77,27 @@
 	}
 	echo '</ul></p>';
 	
+	echo '<br />';
+	
+	echo '<h1>oppg 7</h1>';
+	echo '<p><ul>';
+	foreach ($dogs as $dog) {
+	
+		if ( !($dog['age'] >= 7) ) { // $dog['age'] < 7
+
+			echo '<li>';
+			echo 'Race: ' . $dog['race'] . '<br />';
+			echo 'Fur: ' . $dog['fur'] . '<br />';
+			echo 'Name: ' . $dog['name'] . '<br />';
+			echo 'Age: ' . $dog['age'] . '<br />';
+			echo 'Owner: ' . $dog['owner']['name'] . ' (' . $dog['owner']['age'] . ')';
+			
+			
+			echo '</li>';
+
+		}
+		
+	}
+	echo '</ul></p>';
+	
 ?>
